@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 //utilizar o multer para definir aonde os arquivos via uplaod serão armazenados
 const storage = multer.diskStorage({
     //nesse caso na pasta ./upload
-    destination: function(req,file, callback){
+    destination: function(req, file, callback){
         callback(null,'./upload')
     },
     //definindo o nome da pasta com Datenow antes, para não haver nomes iguais e sobreposicao
@@ -32,6 +32,14 @@ app.post('/upload',(req,res) => {
         }
 
         res.end('Concluido')
+    })
+})
+
+app.post('/formulario', (req,res) => {
+    res.send({
+        //usando o spread e inserindo o id, está retornando para a página
+        ...req.body,
+        id: 1
     })
 })
 
